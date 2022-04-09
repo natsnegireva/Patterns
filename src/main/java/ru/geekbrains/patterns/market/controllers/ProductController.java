@@ -27,6 +27,7 @@ public class ProductController {
             page = 1;
         }
 
+        // использование паттерна Builder
         return productService.findAll(ProductSpecifications.build(params), page, 4);
     }
 
