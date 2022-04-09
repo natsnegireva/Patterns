@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    List<Order> findAllByOwnerUsername(String ownerUsername);
+    List<Order> findAllByOwnerUsername(String ownerUsername); // паттерн Iterator
+    
 }
