@@ -1,10 +1,11 @@
 package ru.geekbrains.patterns.market.model;
 
 import lombok.*;
-import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Data
@@ -17,8 +18,12 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
     @JoinColumn(name = "product_id")
-    private ru.geekbrains.patterns.market.model.Product product;
+    private Product product;
 
     @Column(name = "quantity")
     private int quantity;
@@ -29,7 +34,15 @@ public class OrderItem {
     @Column(name = "price")
     private int price;
 
-    public OrderItem(ru.geekbrains.patterns.market.model.Product product) {
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    public OrderItem(Product product) {
         this.product = product;
         this.quantity = 1;
         this.pricePerProduct = product.getPrice();
@@ -44,18 +57,5 @@ public class OrderItem {
     public void decrementQuantity() {
         quantity--;
         price = quantity * pricePerProduct;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        OrderItem orderItem = (OrderItem) o;
-        return id != null && Objects.equals(id, orderItem.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }
