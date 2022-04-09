@@ -20,7 +20,7 @@ public class MarketApplication {
 	// AOP Spring - это паттерн Proxy
 
 	// ПОВЕДЕНЧЕСКИЕ ПАТТЕРНЫ:
-	// AuthController - паттерна Mediator
+	// AuthController - паттерн Mediator
 	// JwtTokenUtil реализует паттерн Command
 	// Cart реализует паттерн Iterator
 	// В репозиториях List наследуется от Collection extends Iterable - паттерн Iterator
