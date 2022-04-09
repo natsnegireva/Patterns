@@ -50,6 +50,7 @@ public class Cart {
         totalPrice = 0;
         for (OrderItem o : items) {
             totalPrice += o.getPrice();
+            
         }
     }
 }
