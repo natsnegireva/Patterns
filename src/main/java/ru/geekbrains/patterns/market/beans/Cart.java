@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Data
 public class Cart {
+    // паттерн Singleton
     private final ProductService productService;
     private List<OrderItem> items;
     private int totalPrice;
@@ -24,6 +25,7 @@ public class Cart {
     public void init() {
         this.items = new ArrayList<>();
     }
+
 
     public void addToCart(Long id) {
         for (OrderItem o : items) {
