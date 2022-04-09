@@ -16,6 +16,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final Cart cart;
 
+    // паттерн Adapter
     public Order createFromUserCart(User user, String address) {
         Order order = new Order(cart, user, address);
         order = orderRepository.save(order);
